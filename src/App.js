@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Landing from "./components/Landing/Landing";
+import {Route, Switch} from 'react-router-dom';
+import posed, {PoseGroup} from 'react-pose';
+import Destination from "./components/Destinations/Destination";
+import Detail from "./assets/images/Detail";
 
 class App extends Component {
   render() {
+      const RoutesContainer = posed.div({
+          enter: {opacity: 1, delay: 400, beforeChildren: true},
+          exit: {opacity: 0}
+      });
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Route render={({location}) => (
+            <PoseGroup>
+                <RoutesContainer key={location.pathname}>
+                    <Switch location={location}>
+                        <Route exact path="/" component={Landing} key="Home"/>
+                        <Route exact path="/:destinasi" component={Destination} key="Home"/>
+                        <Route exact path="/:destinasi/:id" component={Detail} key="Home"/>
+                    </Switch>
+                </RoutesContainer>
+            </PoseGroup>
+        )}/>
     );
   }
 }
