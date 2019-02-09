@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 import Landing from "./components/Landing/Landing";
 import {Route, Switch} from 'react-router-dom';
 import posed, {PoseGroup} from 'react-pose';

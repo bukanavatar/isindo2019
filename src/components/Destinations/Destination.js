@@ -35,11 +35,11 @@ class Destination extends Component {
             endpoint: "malangKabWisata"
         }];
         let obj = array.find(o => o.link === link);
-        console.log(obj.endpoint);
-        console.log(link);
+        // console.log(obj.endpoint);
+        // console.log(link);
         axios.get(`${BASE_URL}${obj.endpoint}/list`)
             .then(data => {
-                console.log(data.data);
+                // console.log(data.data);
                 this.setState({
                     destinasi: this.state.destinasi.concat(data.data.data),
                     loading: false,
@@ -51,7 +51,6 @@ class Destination extends Component {
 
     render() {
         document.body.style.overflowX = "hidden";
-        const destinasi = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const css = {
             height: window.innerWidth,
             width: window.innerHeight,

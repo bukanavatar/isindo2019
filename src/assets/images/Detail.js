@@ -4,28 +4,14 @@ import CurrencyFormat from "react-currency-format";
 import {Link} from 'react-router-dom';
 
 const BASE_URL = "http://178.128.26.170:5000/";
-const link = window.location.pathname.split("/")[1];
-const array = [{
-    link: "malang",
-    kota: "Malang",
-    endpoint: "malangKotaWisata"
-}, {
-    link: "batu",
-    kota: "Batu",
-    endpoint: "batuKotaWisata"
-}, {
-    link: "kabupaten",
-    kota: "Kab.Malang",
-    endpoint: "malangKabWisata"
-}];
-let obj = array.find(o => o.link === link);
-const link2 = window.location.pathname.split("/")[2];
 
 class Detail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            link:"",
+            back:""
         };
         document.body.style.backgroundColor = "white"
     }
@@ -59,7 +45,8 @@ class Detail extends Component {
             }
         }).then(data => {
             this.setState({
-                data: {...this.state.data, ...data.data.data[0]}
+                data: {...this.state.data, ...data.data.data[0]},
+                link:link3
             })
         })
     }
@@ -71,12 +58,12 @@ class Detail extends Component {
     }
 
     render() {
-        console.log(this.state.data);
+        // console.log(this.state.data);
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12 col-md-4 detailll" style={{background: "#f1a313"}}>
-                        <Link to={`/` + obj.link}>
+                        <Link to={`/` + this.state.link}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#5e5e5e" width="30" height="30"
                                  viewBox="0 0 24 24">
                                 <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
